@@ -10,6 +10,7 @@ const state = reactive({
 })
 
 let c = 0
+// debugger
 effect(() => {
     c = state.a + state.b
     console.log(c)

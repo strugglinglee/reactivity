@@ -14,13 +14,14 @@ const state = reactive({
 
 let c = 0
 // debugger
-effect(() => {
-    c = state.a + state.b
-    console.log(c)
-})
-// 多层响应
 // effect(() => {
-//     c = state.e.f
+//     c = state.a + state.b
 //     console.log(c)
 // })
-// state.e.f = 2
+// state.a = 2
+// 多层响应
+effect(() => {
+    c = state.e.f
+    console.log(c)
+})
+state.e.f = 2

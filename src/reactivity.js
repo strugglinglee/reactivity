@@ -49,16 +49,15 @@ const reactive = (target) => {
              * 因为proxy只能代理一层，所以
              * 如果属性值对应的依旧是一个对象，那需要把这个对象也包装为一个响应式对象
              */
-            if (isObject(result)) return reactive(result);
+            if (isObject(result)) {
+                return reactive(result)
+            };
             return result;
         },
         set(target, key, value, receiver) {
-            const oldValue = target[key];
             const result = Reflect.set(target, key, value, receiver);
-            if (oldValue != result) {
-                // 触发依赖对应副作用
-                trigger(target, key);
-            }
+            // 触发依赖对应副作用
+            trigger(target, key);
             return result;
         }
     }
